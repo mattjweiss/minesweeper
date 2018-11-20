@@ -10,6 +10,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.control.TextField;
 
+// TODO documentaion
+// TODO implement flags
+// TODO formatting (fxml / css)
+
 public class MineSweeperGUI extends Application {
     Stage stage;
     Scene titleScreen, gameScreen;
@@ -53,9 +57,6 @@ public class MineSweeperGUI extends Application {
             @Override public void handle(ActionEvent e) {
                 numMines = Integer.parseInt(mineSettingField.getText());//TODO fix
                 size = Integer.parseInt(sizeSettingField.getText());
-                System.out.print(numMines);
-                System.out.print(" ");
-                System.out.println(size);
                 game = new MineSweeper(numMines, size);
                 createGameScreen();
                 stage.setScene(gameScreen);
@@ -73,11 +74,12 @@ public class MineSweeperGUI extends Application {
     void createGameScreen() {
         GridPane gridPane = new GridPane();
         buttons = new Button[size][size];
-        System.out.println(size);//
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 buttons[i][j] = new Button();
                 buttons[i][j].setText("x");
+                buttons[i][j].setPrefWidth(30);
+                buttons[i][j].setPrefHeight(30);
                 final int x = i;
                 final int y = j;
                 buttons[i][j].setOnAction(new EventHandler<ActionEvent>() {
